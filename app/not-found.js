@@ -1,8 +1,11 @@
 // app/not-found.tsx
 import Link from 'next/link'
+import NavigationAtas from '../components/Navigation'
 
 export default function NotFound() {
   return (
+    <>
+    <NavigationAtas/>
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 flex items-center justify-center">
       <div className="max-w-xl mx-auto text-center space-y-6 p-8">
         <div className="text-9xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">
@@ -31,5 +34,7 @@ export default function NotFound() {
         </div>
       </div>
     </div>
+    </>
+
   )
 }
