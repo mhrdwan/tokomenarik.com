@@ -1,5 +1,6 @@
 {
   "/api/product/[slug]/route": "app/api/product/[slug]/route.js",
   "/api/testimonials/[slug]/route": "app/api/testimonials/[slug]/route.js",
+  "/promo/[slug]/page": "app/promo/[slug]/page.js",
   "/_not-found/page": "app/_not-found/page.js"
 }

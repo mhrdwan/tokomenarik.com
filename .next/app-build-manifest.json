@@ -11,15 +11,20 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
-    "/api/testimonials/[slug]/route": [
+    "/promo/[slug]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/testimonials/[slug]/route.js"
+      "static/chunks/app/promo/[slug]/page.js"
     ],
     "/api/product/[slug]/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/api/product/[slug]/route.js"
+    ],
+    "/api/testimonials/[slug]/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/testimonials/[slug]/route.js"
     ],
     "/_not-found/page": [
       "static/chunks/webpack.js",

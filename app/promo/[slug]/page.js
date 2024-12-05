@@ -1,7 +1,7 @@
 // app/product/[slug]/page.tsx
 import { notFound } from "next/navigation";
 import SebelumKeLanding from "../SebelumKeLanding";
-import { BASE_URL } from "../core/api";
+import { BASE_URL } from "../../core/api";
 
 
 
