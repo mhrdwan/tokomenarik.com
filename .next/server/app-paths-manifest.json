@@ -1,0 +1,8 @@
+{
+  "/api/product/[slug]/route": "app/api/product/[slug]/route.js",
+  "/api/testimonials/[slug]/route": "app/api/testimonials/[slug]/route.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/page": "app/page.js",
+  "/product/[slug]/page": "app/product/[slug]/page.js"
+}
