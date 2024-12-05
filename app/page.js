@@ -1,194 +1,164 @@
-'use client'
-
-import React, { useState } from "react";
+// app/page.js
 import Image from 'next/image';
+import Link from 'next/link';
 
+// Logo component
+const Logo = () => (
+  <div className="flex items-center space-x-2">
+    <span className="text-2xl">🛍️</span>
+    <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">
+      TokoMenarik
+    </span>
+  </div>
+);
+
+// Navigation component
 const Navigation = () => (
-  <nav className="bg-white shadow-sm sticky top-0 z-50">
+  <nav className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex justify-between h-16">
-        <div className="flex items-center">
-          <span className="text-xl font-bold text-gray-800">MyStore</span>
-        </div>
+        <Link href="/" className="flex items-center">
+          <Logo />
+        </Link>
         <div className="flex items-center space-x-4">
-          <button className="text-gray-600 hover:text-gray-800">🔍</button>
-          <button className="text-gray-600 hover:text-gray-800">🛒</button>
+          <button className="text-gray-600 hover:text-gray-800 transition-colors">
+            <span className="text-xl">🔍</span>
+          </button>
+          <button className="text-gray-600 hover:text-gray-800 transition-colors">
+            <span className="text-xl">🛒</span>
+          </button>
         </div>
       </div>
     </div>
   </nav>
 );
 
+// Product Card component
 const ProductCard = ({ product }) => {
-  const handleWhatsAppClick = () => {
-    const message = `Halo, saya tertarik dengan produk ${product.name}! Boleh info lebih lanjut?`;
-    const whatsappUrl = `https://wa.me/6281221871961?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank");
-  };
-
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-      <div className="relative">
-        <Image
-          src={product.image}
-          alt={product.name}
-          width={400}
-          height={300}
-          className="w-full h-48 object-cover"
-        />
-        {product.discount && (
-          <div className="absolute top-2 right-2">
-            <span className="bg-red-500 text-white text-sm px-2 py-1 rounded-full">
-              {product.discount}% OFF
-            </span>
+    <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+      <Link href={`/promo/${product.slug}`}>
+        <div className="relative aspect-square">
+          <Image
+            src={product.photos[0]}
+            alt={product.name}
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity">
+            <div className="absolute bottom-4 left-4 right-4">
+              <div className="flex items-center space-x-2 text-white">
+                <span>{product.emoji}</span>
+                <span className="font-medium">Lihat Detail</span>
+              </div>
+            </div>
           </div>
-        )}
-      </div>
-      <div className="p-4">
-        <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-2">
-          {product.name}
-        </h3>
-        <div className="flex items-center mb-2">
-          <div className="text-yellow-400 text-sm">⭐⭐⭐⭐⭐</div>
-          <span className="text-gray-500 text-sm ml-1">({product.reviews})</span>
         </div>
-        <div className="mb-3">
-          {product.oldPrice && (
-            <span className="text-gray-400 line-through text-sm mr-2">
-              Rp {product.oldPrice.toLocaleString()}
-            </span>
-          )}
-          <span className="text-xl font-bold text-red-600">
-            Rp {product.price.toLocaleString()}
-          </span>
+        <div className="p-4">
+          <div className="flex items-center space-x-2 mb-2">
+            {product.highlights.map((highlight, index) => (
+              <span key={index} className="text-sm bg-gray-100 px-2 py-1 rounded-full">
+                {highlight.emoji}
+              </span>
+            ))}
+          </div>
+          <h3 className="font-semibold text-gray-800 mb-2 line-clamp-2">
+            {product.name}
+          </h3>
+          <p className="text-sm text-gray-500 mb-3 line-clamp-2">
+            {product.tagline}
+          </p>
+          <div className="flex items-end justify-between">
+            <div>
+              <div className="text-gray-400 line-through text-sm">
+                Rp {product.originalPrice.toLocaleString()}
+              </div>
+              <div className="text-xl font-bold text-red-600">
+                Rp {product.salePrice.toLocaleString()}
+              </div>
+            </div>
+            <div className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full font-medium">
+              Stock: {product.stock}
+            </div>
+          </div>
         </div>
-        <button
-          onClick={handleWhatsAppClick}
-          className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition-colors flex items-center justify-center space-x-2"
-        >
-          <span>Beli Sekarang</span>
-          <span>💬</span>
-        </button>
-      </div>
+      </Link>
     </div>
   );
 };
 
-const CategoryTabs = ({ categories, activeCategory, onSelect }) => (
-  <div className="flex overflow-x-auto space-x-4 py-4 mb-6">
-    {categories.map((category) => (
-      <button
-        key={category}
-        onClick={() => onSelect(category)}
-        className={`px-4 py-2 rounded-full whitespace-nowrap ${
-          activeCategory === category
-            ? "bg-blue-500 text-white"
-            : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-        }`}
-      >
-        {category}
-      </button>
-    ))}
-  </div>
-);
+// Get products data
+async function getProducts() {
+  try {
+    const baseUrl = process.env.NODE_ENV === 'development' 
+      ? 'http://localhost:3000' 
+      : process.env.NEXT_PUBLIC_BASE_URL;
 
-const HomePage = () => {
-  const [activeCategory, setActiveCategory] = useState("Semua");
+    const res = await fetch(`${baseUrl}/api/product`, {
+      next: { revalidate: 60 },
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-  const categories = [
-    "Semua",
-    "Kacamata",
-    "Alat Rumah Tangga",
-    "Elektronik",
-    "Aksesori"
-  ];
-
-  const products = [
-    {
-      id: 1,
-      name: "Kacamata Anti Radiasi Blue Light Blocker",
-      price: 149000,
-      oldPrice: 299000,
-      discount: 50,
-      image: "/api/placeholder/400/300",
-      reviews: 128,
-      category: "Kacamata"
-    },
-    {
-      id: 2,
-      name: "Super Mop 3000 Pro Max",
-      price: 499000,
-      oldPrice: 999000,
-      discount: 50,
-      image: "/api/placeholder/400/300",
-      reviews: 256,
-      category: "Alat Rumah Tangga"
-    },
-    {
-      id: 3,
-      name: "Smart Watch Sport Edition",
-      price: 299000,
-      oldPrice: 599000,
-      discount: 50,
-      image: "/api/placeholder/400/300",
-      reviews: 64,
-      category: "Elektronik"
-    },
-    {
-      id: 4,
-      name: "Wireless Earbuds Pro",
-      price: 199000,
-      oldPrice: 399000,
-      discount: 50,
-      image: "/api/placeholder/400/300",
-      reviews: 92,
-      category: "Elektronik"
+    if (!res.ok) {
+      throw new Error(`Failed to fetch: ${res.status}`);
     }
-  ];
+
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    return {}; // Return empty object if error
+  }
+}
+
+export default async function HomePage() {
+  const productsData = await getProducts();
+  const products = Object.values(productsData);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       <Navigation />
       
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white">
-        <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+      <div className="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-black opacity-20"></div>
+          <div className="absolute -top-24 -left-24 w-96 h-96 bg-white/20 rounded-full mix-blend-overlay filter blur-3xl"></div>
+          <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-white/20 rounded-full mix-blend-overlay filter blur-3xl"></div>
+        </div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 py-24 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl font-bold mb-4">Selamat Datang di MyStore</h1>
-            <p className="text-xl opacity-90">Temukan Produk Berkualitas Untuk Anda</p>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              Temukan Produk Berkualitas
+            </h1>
+            <p className="text-xl md:text-2xl opacity-90 max-w-2xl mx-auto">
+              Koleksi produk pilihan dengan harga terbaik untuk Anda
+            </p>
           </div>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-        <CategoryTabs
-          categories={categories}
-          activeCategory={activeCategory}
-          onSelect={setActiveCategory}
-        />
-
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {products
-            .filter(
-              (product) =>
-                activeCategory === "Semua" ||
-                product.category === activeCategory
-            )
-            .map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+      {/* Products Grid */}
+      <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {products.map((product) => (
+            <ProductCard key={product.slug} product={product} />
+          ))}
         </div>
       </div>
 
-      {/* Float WhatsApp Button */}
-      <div className="fixed bottom-6 right-6">
-        <button className="bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-colors">
-          <span className="text-2xl">💬</span>
-        </button>
-      </div>
+      {/* Floating WhatsApp Button */}
+      <a
+        href="https://wa.me/6281221871961"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 hover:scale-110 active:scale-95"
+      >
+        <span className="text-2xl">💬</span>
+      </a>
     </div>
   );
-};
-
-export default HomePage;
+}
