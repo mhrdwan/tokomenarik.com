@@ -1,20 +1,9 @@
 {
   "pages": {
-    "/layout": [
+    "/api/product/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/layout.css",
-      "static/chunks/app/layout.js"
-    ],
-    "/not-found": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/not-found.js"
-    ],
-    "/promo/[slug]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/promo/[slug]/page.js"
+      "static/chunks/app/api/product/route.js"
     ],
     "/api/product/[slug]/route": [
       "static/chunks/webpack.js",
