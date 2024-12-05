@@ -5,9 +5,10 @@ import WhatsAppButton from "./WhatsAppButton";
 import MediaGallery from "./MediaGallery";
 import { Badge, Card } from "./ui";
 import TestimonialCarousel from "./TestimonialCarousel";
+import CountdownTimer from "./CountdownTimer";
 
 const ProductLanding = ({ productData, testimonials }) => {
-  console.log(`testimonials`, testimonials);
+ 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 relative pb-20">
       <div className="relative bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 overflow-hidden">
@@ -81,9 +82,7 @@ const ProductLanding = ({ productData, testimonials }) => {
             <div className="space-y-6">
               <div className="flex items-center space-x-2">
                 <span className="text-red-500">⏰</span>
-                <span className="text-red-500 font-bold">
-                  Promo Berakhir Dalam 2:59:59
-                </span>
+                <CountdownTimer />
               </div>
 
               <div className="flex items-center">
