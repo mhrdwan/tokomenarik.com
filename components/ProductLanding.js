@@ -124,7 +124,7 @@ const ProductLanding = ({ productData, testimonials }) => {
             <div className="relative w-full h-[600px] rounded-xl overflow-hidden shadow-2xl bg-black">
               <video
                 className="absolute top-0 left-0 w-full h-full object-contain"
-                controls
+                // controls
                 autoPlay
                 muted
                 loop
@@ -193,8 +193,7 @@ const ProductLanding = ({ productData, testimonials }) => {
           </p>
         </div>
       </div>
-      // Tambahkan di bagian akhir component ProductLanding sebelum closing div
-      terakhir:
+     
       {/* Floating WhatsApp Button */}
       <a
         href={`https://wa.me/${
