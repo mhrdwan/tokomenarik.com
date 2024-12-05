@@ -206,19 +206,19 @@ const ProductLanding = ({ productData, testimonials }) => {
       >
         <div className="flex items-center gap-2">
           <span className="text-2xl">💬</span>
-          <span className="hidden md:block font-medium">Order Sekarang</span>
+          <span className=" md:block font-medium">Order Sekarang</span>
         </div>
 
         {/* Pulse Effect */}
         <div className="absolute top-0 left-0 w-full h-full rounded-full animate-ping bg-green-500 opacity-25"></div>
       </a>
       {/* Order Sekarang Floating Button - Mobile Only */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 p-4 bg-white border-t shadow-lg">
+      {/* <div className="md:hidden fixed bottom-0 left-0 right-0 p-4 bg-white border-t shadow-lg">
         <WhatsAppButton
           phoneNumber={productData?.whatsappNumber}
           productName={productData?.name}
         />
-      </div>
+      </div> */}
     </div>
   );
 };
