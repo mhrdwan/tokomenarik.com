@@ -1,5 +1,3 @@
-// app/product/[slug]/page.tsx
-import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import { BASE_URL } from "../core/api";
 import ProductLanding from "../../components/ProductLanding";

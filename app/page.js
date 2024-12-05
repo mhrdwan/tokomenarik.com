@@ -87,7 +87,6 @@ const ProductCard = ({ product }) => {
   );
 };
 
-// Get products data
 async function getProducts() {
   try {
     const baseUrl = process.env.NODE_ENV === 'development' 

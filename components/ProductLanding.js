@@ -8,7 +8,6 @@ import TestimonialCarousel from "./TestimonialCarousel";
 import CountdownTimer from "./CountdownTimer";
 
 const ProductLanding = ({ productData, testimonials }) => {
- 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 relative pb-20">
       <div className="relative bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 overflow-hidden">
@@ -81,7 +80,6 @@ const ProductLanding = ({ productData, testimonials }) => {
             <MediaGallery photos={productData?.photos} />
             <div className="space-y-6">
               <div className="flex items-center space-x-2">
-                <span className="text-red-500">⏰</span>
                 <CountdownTimer />
               </div>
 
@@ -126,6 +124,9 @@ const ProductLanding = ({ productData, testimonials }) => {
               <video
                 className="absolute top-0 left-0 w-full h-full object-contain"
                 controls
+                autoPlay
+                muted
+                loop
                 poster={productData?.videoPoster}
                 preload="metadata"
                 playsInline

@@ -52,8 +52,8 @@ const products = {
       "https://down-id.img.susercontent.com/file/id-11134201-23030-1hjv3ffpjvov0e.webp",
       "https://down-id.img.susercontent.com/file/id-11134201-23030-o6yxeefpjvovf5.webp",
     ],
-    originalPrice: 120000,
-    salePrice: 99000,
+    originalPrice: 143000,
+    salePrice: 110000,
     whatsappNumber: "6281221871961",
     bonus: "Extra Bubble Wrap (Optional)",
     videoPoster:
