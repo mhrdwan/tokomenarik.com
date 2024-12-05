@@ -1,37 +1,10 @@
 // app/page.js
 import Image from 'next/image';
 import Link from 'next/link';
+import NavigationAtas from '../components/Navigation';
 
 // Logo component
-const Logo = () => (
-  <div className="flex items-center space-x-2">
-    <span className="text-2xl">🛍️</span>
-    <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">
-      TokoMenarik
-    </span>
-  </div>
-);
 
-// Navigation component
-const Navigation = () => (
-  <nav className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="flex justify-between h-16">
-        <Link href="/" className="flex items-center">
-          <Logo />
-        </Link>
-        <div className="flex items-center space-x-4">
-          <button className="text-gray-600 hover:text-gray-800 transition-colors">
-            <span className="text-xl">🔍</span>
-          </button>
-          <button className="text-gray-600 hover:text-gray-800 transition-colors">
-            <span className="text-xl">🛒</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </nav>
-);
 
 // Product Card component
 const ProductCard = ({ product }) => {
@@ -118,7 +91,7 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      <Navigation />
+      <NavigationAtas />
       
       {/* Hero Section */}
       <div className="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white overflow-hidden">

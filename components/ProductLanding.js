@@ -6,10 +6,11 @@ import MediaGallery from "./MediaGallery";
 import { Badge, Card } from "./ui";
 import TestimonialCarousel from "./TestimonialCarousel";
 import CountdownTimer from "./CountdownTimer";
-
+import NavigationAtas from "../components/Navigation"
 const ProductLanding = ({ productData, testimonials }) => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 relative pb-20">
+      <NavigationAtas/>
       <div className="relative bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute -top-24 -left-24 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob"></div>
