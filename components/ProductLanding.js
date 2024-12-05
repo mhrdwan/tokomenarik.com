@@ -74,7 +74,6 @@ const ProductLanding = ({ productData, testimonials }) => {
           </div>
         </div>
       </div>
-
       <div className="container mx-auto px-4 py-8">
         <Card className="mb-12 p-6">
           <div className="grid md:grid-cols-2 gap-8">
@@ -192,6 +191,34 @@ const ProductLanding = ({ productData, testimonials }) => {
             ⚡️ Pengiriman Express | 🎁 Bonus Melimpah | 💯 Garansi Resmi
           </p>
         </div>
+      </div>
+      // Tambahkan di bagian akhir component ProductLanding sebelum closing div
+      terakhir:
+      {/* Floating WhatsApp Button */}
+      <a
+        href={`https://wa.me/${
+          productData?.whatsappNumber
+        }?text=Halo, saya tertarik dengan produk ${encodeURIComponent(
+          productData?.name
+        )}. Mohon info lebih lanjut.`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 flex items-center justify-center"
+      >
+        <div className="flex items-center gap-2">
+          <span className="text-2xl">💬</span>
+          <span className="hidden md:block font-medium">Order Sekarang</span>
+        </div>
+
+        {/* Pulse Effect */}
+        <div className="absolute top-0 left-0 w-full h-full rounded-full animate-ping bg-green-500 opacity-25"></div>
+      </a>
+      {/* Order Sekarang Floating Button - Mobile Only */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 p-4 bg-white border-t shadow-lg">
+        <WhatsAppButton
+          phoneNumber={productData?.whatsappNumber}
+          productName={productData?.name}
+        />
       </div>
     </div>
   );

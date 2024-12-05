@@ -5,7 +5,6 @@ import { BASE_URL } from "../core/api";
 import ProductLanding from "../../components/ProductLanding";
 
 async function getProductData(slug) {
-  console.log(`ini adalah get produk`, slug);
   try {
     const res = await fetch(`${BASE_URL}/api/product/${slug}`, {
       next: { revalidate: 60 },
