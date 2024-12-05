@@ -38,7 +38,7 @@ export async function generateMetadata(
     title: `${productData.name} | Toko Menarik`,
     description: productData.tagline,
     openGraph: {
-      title: `${productData.name} | Our Store`,
+      title: `${productData.name} | Toko Menarik`,
       description: productData.tagline,
       images: [productData.photos[0]],
     },

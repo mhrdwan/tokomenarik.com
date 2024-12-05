@@ -1,7 +1,6 @@
-'use client'
+"use client";
 
 import React from "react";
-
 
 const WhatsAppIcon = () => (
   <svg viewBox="0 0 24 24" className="w-8 h-8" fill="currentColor">
@@ -11,8 +10,18 @@ const WhatsAppIcon = () => (
 
 const WhatsAppButton = ({ phoneNumber, productName }) => {
   const handleWhatsAppClick = () => {
-    const message = `Halo, saya tertarik dengan ${productName}! Boleh info lebih lanjut?`;
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    const message = `Hai Kak! 👋
+
+Wah, saya sangat tertarik dengan ${productName} ini! 🤩
+Kelihatannya produknya bagus banget dan sesuai dengan yang saya cari.
+
+Boleh minta info lengkapnya ya Kak? 
+Pengen cepet-cepet order nih! ✨
+
+Makasih ya Kak! 😊`;
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+      message
+    )}`;
     window.open(whatsappUrl, "_blank");
   };
 
@@ -28,4 +37,3 @@ const WhatsAppButton = ({ phoneNumber, productName }) => {
 };
 
 export default WhatsAppButton;
-
